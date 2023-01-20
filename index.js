@@ -1,6 +1,7 @@
 // TODO: Include packages needed for this application
 var inquirer = require('inquirer');
 var fs = require('fs');
+var renderlicense = require('./utils/generateMarkdown.js');
 // TODO: Create an array of questions for user input
 const questions = [
     {
@@ -50,8 +51,17 @@ const questions = [
         message: 'Enter your email address',
     }
 ];
-const generateMarkdown = ({ title, description, install, usage, contribution, test, license, github, email }) =>
-    `# ${title}
+
+const generateMarkdown = ({ title, description, install, usage, contribution, test, license, github, email }) => {
+    //prepares the license badge and link to be added to the readme
+    var licenseBadge = renderlicense.renderLicenseBadge(license);
+    var licenseLink = renderlicense.renderLicenseLink(license);
+    var LicenseSection = renderlicense.renderLicenseSection(license);
+    var completeLicense = licenseBadge + licenseLink;
+
+
+    const readme =
+        `# ${title}
 
 ## Description
 ${description}
@@ -71,7 +81,8 @@ ${install}
 ${usage}
 
 ## License
-${license}
+${completeLicense}
+${LicenseSection}
 
 ## Contributing
 ${contribution}
@@ -81,22 +92,23 @@ ${test}
 
 ## Questions
 You can find me on GitHub at ${github} or email me at ${email}`
-    ;
-
+        ;
+    //writes a new file  after the user has answered all the questions and the readme is generated
+    fs.writeFile('.FinishedREADMEs/README.md', readme, (err) =>
+        err ? console.log(err) : console.log('Success!')
+    );
+}
 
 
 
 // TODO: Create a function to initialize app
 function init() {
-    const promptUser = () => {
-        return inquirer.prompt(questions);
-    };
-    promptUser()
-        // TODO: Create a function to write README file
-        .then((answers) => writeFile('README.md', generateMarkdown(answers)))
-        .then(() => console.log('Successfully wrote to README.md'))
-        .catch((err) => console.error(err));
-};
 
+    inquirer.prompt(questions)
+        .then((answers) => {
+            generateMarkdown(answers);
+        })
+
+}
 // Function call to initialize app
 init();
