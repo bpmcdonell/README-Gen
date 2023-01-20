@@ -1,8 +1,8 @@
-# Title
-README Generator
+# README Generator
+
 
 ## Description
-This program is designed to help you put together and format your README.md files correctly by asking you a series of questions about your project and then generating your README.md file in the FinishedREADMEs folder
+This program is designed to help you put together and format your README.md files correctly by asking you a series of questions about your project and then generating your README.md file in the FinishedREADMEs folder.
 
 ## Table of Contents
 * [Installation](#installation)
