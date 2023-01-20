@@ -19,8 +19,7 @@ To install this program open the file directory of the program in a external ter
 You can use this program by opening the file directory of the program in a external terminal and typing: node index.js
 
 ## License
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-This application is under the MIT License
+This application does not have a license
 
 ## Contributing
 N/A

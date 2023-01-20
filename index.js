@@ -94,7 +94,7 @@ ${test}
 You can find me on GitHub at ${github} or email me at ${email}`
         ;
     //writes a new file  after the user has answered all the questions and the readme is generated
-    fs.writeFile('.FinishedREADMEs/README.md', readme, (err) =>
+    fs.writeFile('./FinishedREADMEs/README.md', readme, (err) =>
         err ? console.log(err) : console.log('Success!')
     );
 }
